@@ -1,0 +1,35 @@
+一、安装
+1. 进入Kafka配置目录，D:\Java\Tool\kafka_2.11-0.10.0.1
+2. 编辑文件“server.properties”
+3. 找到并编辑log.dirs=D:\Java\Tool\kafka_2.11-0.10.0.1\kafka-log,这里的目录自己修改成自己喜欢的
+4. 找到并编辑zookeeper.connect=localhost:2181。表示本地运行
+5. Kafka会按照默认，在9092端口上运行，并连接zookeeper的默认端口：2181。
+二、启动
+1.启动zk
+2、启动kafka：kafka-server-start.bat ../../config/server.properties
+三、测试
+1.创建服务生产者:kafka-console-producer.bat --broker-list localhost:9092 --topic test
+2.创建服务消费者:kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
+3.查看topic列表
+kafka-topics.bat --list --zookeeper localhost:2181
+
+kafka-server-start.bat ../../config/server.properties
+
+四、集群要点：
+kafka启动了几个节点，那么最大的副本数就是最大节点数。
+创建拥有三个副本的topic：
+1.kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic
+
+2.现在我们搭建了一个集群，怎么知道每个节点的信息呢？运行“"describe topics”命令就可以了：
+> kafka-topics.bat --describe --zookeeper localhost:2181 --topic my-replicated-topic
+显示信息-----------
+Topic:my-replicated-topic       PartitionCount:1        ReplicationFactor:3     Configs:
+        Topic: my-replicated-topic      Partition: 0    Leader: 1       Replicas: 1,2,0 Isr: 1,2,0
+显示信息-----------
+
+下面解释一下这些输出。第一行是对所有分区的一个描述，然后每个分区都会对应一行，因为我们只有一个分区所以下面就只加了一行。
+leader：负责处理消息的读和写，leader是从所有节点中随机选择的.
+replicas：列出了所有的副本节点，不管节点是否在服务中.
+isr：是正在服务中的节点.
+
+3.
