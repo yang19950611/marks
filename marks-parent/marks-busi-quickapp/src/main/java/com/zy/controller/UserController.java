@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,8 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
     /**
      * 测试
      */
@@ -27,6 +30,7 @@ public class UserController {
     @ApiOperation(value = "获取用户信息" ,  notes=" 获取用户信息")
     public UserInfo getUser(HttpServletRequest request) {
         logger.info("获取用户信息");
+        kafkaTemplate.send("first-test","key","hello world!");
         return userService.getUserInfoByPhone();
     }
 }
