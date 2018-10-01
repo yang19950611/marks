@@ -5,3 +5,4 @@
 4.git remote add origin https://github.com/yang19950611/marks
 5.git pull --rebase origin master
 6.git push -u origin master
+7.删除远程无关的文件版本 ：git rm --cached -r useless
