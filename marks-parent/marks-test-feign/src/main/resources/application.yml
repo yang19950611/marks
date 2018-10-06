@@ -1,0 +1,10 @@
+server:
+  port: 8686
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+  application:
+    name: service-test-feign
+
