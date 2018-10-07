@@ -65,10 +65,4 @@ public class UserController {
     }
 
 
-    @Value("${foo}")
-    String foo;
-    @RequestMapping(value = "/hi")
-    public String hi(){
-        return foo;
-    }
 }

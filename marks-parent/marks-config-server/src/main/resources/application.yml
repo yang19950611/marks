@@ -6,7 +6,7 @@ spring:
       server:
         git:
           uri: https://github.com/yang19950611/marks
-          searchPaths: config/quickapp
+          searchPaths: config/quickapp,config/eureka
           username:
           password:
     label: master
