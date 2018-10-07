@@ -1,5 +1,6 @@
 package com.zy.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@RequestMapping("/test")
 public class TestController {
     private final Logger logger = LoggerFactory.getLogger(TestController.class);
     @Autowired
@@ -25,4 +27,13 @@ public class TestController {
         logger.info("test----------------");
         return "";
     }
+
+    @RequestMapping("/testHy")
+    public String testRibbon(HttpServletRequest request){
+        logger.info("test-ribbon ----------------");
+        return "test-ribbon";
+    }
+
+
+
 }

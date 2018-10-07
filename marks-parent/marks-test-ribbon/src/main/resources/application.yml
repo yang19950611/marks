@@ -6,5 +6,5 @@ spring:
   thymeleaf:
     cache: false
   application:
-    name: service-test
+    name: service-ribbon-test
 
