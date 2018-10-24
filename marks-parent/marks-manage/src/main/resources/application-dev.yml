@@ -1,0 +1,36 @@
+server:
+  port: 9000
+
+  # 驱动配置信息
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      jdbc-url: jdbc:log4jdbc:mysql://127.0.0.1:3306/quickapp?generateSimpleParameterMetadata=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
+      driver-class-name: net.sf.log4jdbc.DriverSpy
+  second-datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/quickapp?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    timeout: 10000
+    password:
+  thymeleaf:
+    cache: false
+
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+#指定mybatis映射文件的地址
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

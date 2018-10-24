@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+  thymeleaf:
+    cache: false
+  application:
+    name: service-quickapp
+
