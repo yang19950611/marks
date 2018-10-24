@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.dao.po.SysRolePerm">
+	<resultMap id="BaseResultMap" type="com.zy.dao.po.SysRolePerm">
+		<id column="id" property="id" />
+		<result column="role_id" property="roleId" />
+		<result column="perm_id" property="permId" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		sys_role_perm
+	</sql>
+
+	<sql id="Base_Column">
+		id,
+		role_id,
+		perm_id
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			id= #{id}
+	           AND 
+		</if>
+		<if test="roleId != null">
+			role_id= #{roleId}
+	           AND 
+		</if>
+		<if test="permId != null">
+			perm_id= #{permId}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		id,
+	</if>
+	<if test="roleId != null">
+		role_id,
+	</if>
+	<if test="permId != null">
+		perm_id,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="roleId != null">
+		#{roleId},
+	</if>
+	<if test="permId != null">
+		#{permId},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		id=#{id},
+	</if>
+	<if test="roleId != null">
+		role_id=#{roleId},
+	</if>
+	<if test="permId != null">
+		perm_id=#{permId},
+	</if>
+		</set>
+		where 
+			      id=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.roleId != null">
+                    role_id=#{s.roleId},
+			</if>
+			<if test="s.permId != null">
+                    perm_id=#{s.permId}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    id=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.roleId != null">
+                    role_id=#{w.roleId}
+                   AND 
+ 			</if>
+			<if test="w.permId != null">
+                    perm_id=#{w.permId}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

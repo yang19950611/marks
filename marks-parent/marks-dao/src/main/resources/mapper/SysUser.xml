@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.dao.po.SysUser">
+	<resultMap id="BaseResultMap" type="com.zy.dao.po.SysUser">
+		<id column="id" property="id" />
+		<result column="account" property="account" />
+		<result column="pass_word" property="passWord" />
+		<result column="user_name" property="userName" />
+		<result column="mobile" property="mobile" />
+		<result column="email" property="email" />
+		<result column="status" property="status" />
+		<result column="create_time" property="createTime" />
+		<result column="modify_time" property="modifyTime" />
+		<result column="login_time" property="loginTime" />
+		<result column="last_login_time" property="lastLoginTime" />
+		<result column="login_num" property="loginNum" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		sys_user
+	</sql>
+
+	<sql id="Base_Column">
+		id,
+		account,
+		pass_word,
+		user_name,
+		mobile,
+		email,
+		status,
+		create_time,
+		modify_time,
+		login_time,
+		last_login_time,
+		login_num
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			id= #{id}
+	           AND 
+		</if>
+		<if test="account != null">
+			account= #{account}
+	           AND 
+		</if>
+		<if test="passWord != null">
+			pass_word= #{passWord}
+	           AND 
+		</if>
+		<if test="userName != null">
+			user_name= #{userName}
+	           AND 
+		</if>
+		<if test="mobile != null">
+			mobile= #{mobile}
+	           AND 
+		</if>
+		<if test="email != null">
+			email= #{email}
+	           AND 
+		</if>
+		<if test="status != null">
+			status= #{status}
+	           AND 
+		</if>
+		<if test="createTime != null">
+			create_time= #{createTime}
+	           AND 
+		</if>
+		<if test="modifyTime != null">
+			modify_time= #{modifyTime}
+	           AND 
+		</if>
+		<if test="loginTime != null">
+			login_time= #{loginTime}
+	           AND 
+		</if>
+		<if test="lastLoginTime != null">
+			last_login_time= #{lastLoginTime}
+	           AND 
+		</if>
+		<if test="loginNum != null">
+			login_num= #{loginNum}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		id,
+	</if>
+	<if test="account != null">
+		account,
+	</if>
+	<if test="passWord != null">
+		pass_word,
+	</if>
+	<if test="userName != null">
+		user_name,
+	</if>
+	<if test="mobile != null">
+		mobile,
+	</if>
+	<if test="email != null">
+		email,
+	</if>
+	<if test="status != null">
+		status,
+	</if>
+	<if test="createTime != null">
+		create_time,
+	</if>
+	<if test="modifyTime != null">
+		modify_time,
+	</if>
+	<if test="loginTime != null">
+		login_time,
+	</if>
+	<if test="lastLoginTime != null">
+		last_login_time,
+	</if>
+	<if test="loginNum != null">
+		login_num,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="account != null">
+		#{account},
+	</if>
+	<if test="passWord != null">
+		#{passWord},
+	</if>
+	<if test="userName != null">
+		#{userName},
+	</if>
+	<if test="mobile != null">
+		#{mobile},
+	</if>
+	<if test="email != null">
+		#{email},
+	</if>
+	<if test="status != null">
+		#{status},
+	</if>
+	<if test="createTime != null">
+		#{createTime},
+	</if>
+	<if test="modifyTime != null">
+		#{modifyTime},
+	</if>
+	<if test="loginTime != null">
+		#{loginTime},
+	</if>
+	<if test="lastLoginTime != null">
+		#{lastLoginTime},
+	</if>
+	<if test="loginNum != null">
+		#{loginNum},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		id=#{id},
+	</if>
+	<if test="account != null">
+		account=#{account},
+	</if>
+	<if test="passWord != null">
+		pass_word=#{passWord},
+	</if>
+	<if test="userName != null">
+		user_name=#{userName},
+	</if>
+	<if test="mobile != null">
+		mobile=#{mobile},
+	</if>
+	<if test="email != null">
+		email=#{email},
+	</if>
+	<if test="status != null">
+		status=#{status},
+	</if>
+	<if test="createTime != null">
+		create_time=#{createTime},
+	</if>
+	<if test="modifyTime != null">
+		modify_time=#{modifyTime},
+	</if>
+	<if test="loginTime != null">
+		login_time=#{loginTime},
+	</if>
+	<if test="lastLoginTime != null">
+		last_login_time=#{lastLoginTime},
+	</if>
+	<if test="loginNum != null">
+		login_num=#{loginNum},
+	</if>
+		</set>
+		where 
+			      id=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.account != null">
+                    account=#{s.account},
+			</if>
+			<if test="s.passWord != null">
+                    pass_word=#{s.passWord},
+			</if>
+			<if test="s.userName != null">
+                    user_name=#{s.userName},
+			</if>
+			<if test="s.mobile != null">
+                    mobile=#{s.mobile},
+			</if>
+			<if test="s.email != null">
+                    email=#{s.email},
+			</if>
+			<if test="s.status != null">
+                    status=#{s.status},
+			</if>
+			<if test="s.createTime != null">
+                    create_time=#{s.createTime},
+			</if>
+			<if test="s.modifyTime != null">
+                    modify_time=#{s.modifyTime},
+			</if>
+			<if test="s.loginTime != null">
+                    login_time=#{s.loginTime},
+			</if>
+			<if test="s.lastLoginTime != null">
+                    last_login_time=#{s.lastLoginTime},
+			</if>
+			<if test="s.loginNum != null">
+                    login_num=#{s.loginNum}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    id=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.account != null">
+                    account=#{w.account}
+                   AND 
+ 			</if>
+			<if test="w.passWord != null">
+                    pass_word=#{w.passWord}
+                   AND 
+ 			</if>
+			<if test="w.userName != null">
+                    user_name=#{w.userName}
+                   AND 
+ 			</if>
+			<if test="w.mobile != null">
+                    mobile=#{w.mobile}
+                   AND 
+ 			</if>
+			<if test="w.email != null">
+                    email=#{w.email}
+                   AND 
+ 			</if>
+			<if test="w.status != null">
+                    status=#{w.status}
+                   AND 
+ 			</if>
+			<if test="w.createTime != null">
+                    create_time=#{w.createTime}
+                   AND 
+ 			</if>
+			<if test="w.modifyTime != null">
+                    modify_time=#{w.modifyTime}
+                   AND 
+ 			</if>
+			<if test="w.loginTime != null">
+                    login_time=#{w.loginTime}
+                   AND 
+ 			</if>
+			<if test="w.lastLoginTime != null">
+                    last_login_time=#{w.lastLoginTime}
+                   AND 
+ 			</if>
+			<if test="w.loginNum != null">
+                    login_num=#{w.loginNum}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>

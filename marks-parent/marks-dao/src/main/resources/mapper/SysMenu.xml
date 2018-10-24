@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.dao.po.SysMenu">
+	<resultMap id="BaseResultMap" type="com.zy.dao.po.SysMenu">
+		<id column="id" property="id" />
+		<result column="menu_name" property="menuName" />
+		<result column="menu_url" property="menuUrl" />
+		<result column="menu_icon" property="menuIcon" />
+		<result column="is_parent" property="isParent" />
+		<result column="order_num" property="orderNum" />
+		<result column="paren" property="paren" />
+		<result column="create_time" property="createTime" />
+		<result column="modify_time" property="modifyTime" />
+	</resultMap>
+
+	<sql id="Table_Name">
+		sys_menu
+	</sql>
+
+	<sql id="Base_Column">
+		id,
+		menu_name,
+		menu_url,
+		menu_icon,
+		is_parent,
+		order_num,
+		paren,
+		create_time,
+		modify_time
+	</sql>
+
+	<sql id="Base_Where">
+		<trim suffixOverrides="AND">
+		<if test="id != null">
+			id= #{id}
+	           AND 
+		</if>
+		<if test="menuName != null">
+			menu_name= #{menuName}
+	           AND 
+		</if>
+		<if test="menuUrl != null">
+			menu_url= #{menuUrl}
+	           AND 
+		</if>
+		<if test="menuIcon != null">
+			menu_icon= #{menuIcon}
+	           AND 
+		</if>
+		<if test="isParent != null">
+			is_parent= #{isParent}
+	           AND 
+		</if>
+		<if test="orderNum != null">
+			order_num= #{orderNum}
+	           AND 
+		</if>
+		<if test="paren != null">
+			paren= #{paren}
+	           AND 
+		</if>
+		<if test="createTime != null">
+			create_time= #{createTime}
+	           AND 
+		</if>
+		<if test="modifyTime != null">
+			modify_time= #{modifyTime}
+		</if>
+		</trim>
+	</sql>
+	
+    <sql id="Base_Select">
+			select
+		<include refid="Base_Column" />
+		from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</sql>
+
+
+
+	<insert id="insert" >
+		insert into
+		<include refid="Table_Name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		id,
+	</if>
+	<if test="menuName != null">
+		menu_name,
+	</if>
+	<if test="menuUrl != null">
+		menu_url,
+	</if>
+	<if test="menuIcon != null">
+		menu_icon,
+	</if>
+	<if test="isParent != null">
+		is_parent,
+	</if>
+	<if test="orderNum != null">
+		order_num,
+	</if>
+	<if test="paren != null">
+		paren,
+	</if>
+	<if test="createTime != null">
+		create_time,
+	</if>
+	<if test="modifyTime != null">
+		modify_time,
+	</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+	<if test="id != null">
+		#{id},
+	</if>
+	<if test="menuName != null">
+		#{menuName},
+	</if>
+	<if test="menuUrl != null">
+		#{menuUrl},
+	</if>
+	<if test="menuIcon != null">
+		#{menuIcon},
+	</if>
+	<if test="isParent != null">
+		#{isParent},
+	</if>
+	<if test="orderNum != null">
+		#{orderNum},
+	</if>
+	<if test="paren != null">
+		#{paren},
+	</if>
+	<if test="createTime != null">
+		#{createTime},
+	</if>
+	<if test="modifyTime != null">
+		#{modifyTime},
+	</if>
+		</trim>
+	</insert>
+
+	<update id="update" >
+		update
+		<include refid="Table_Name" />
+		<set>
+	<if test="id != null">
+		id=#{id},
+	</if>
+	<if test="menuName != null">
+		menu_name=#{menuName},
+	</if>
+	<if test="menuUrl != null">
+		menu_url=#{menuUrl},
+	</if>
+	<if test="menuIcon != null">
+		menu_icon=#{menuIcon},
+	</if>
+	<if test="isParent != null">
+		is_parent=#{isParent},
+	</if>
+	<if test="orderNum != null">
+		order_num=#{orderNum},
+	</if>
+	<if test="paren != null">
+		paren=#{paren},
+	</if>
+	<if test="createTime != null">
+		create_time=#{createTime},
+	</if>
+	<if test="modifyTime != null">
+		modify_time=#{modifyTime},
+	</if>
+		</set>
+		where 
+			      id=#{id}
+	</update>
+
+	<update id="updateByEntity" >
+		UPDATE
+		<include refid="Table_Name" />
+		<set>
+			<if test="s.menuName != null">
+                    menu_name=#{s.menuName},
+			</if>
+			<if test="s.menuUrl != null">
+                    menu_url=#{s.menuUrl},
+			</if>
+			<if test="s.menuIcon != null">
+                    menu_icon=#{s.menuIcon},
+			</if>
+			<if test="s.isParent != null">
+                    is_parent=#{s.isParent},
+			</if>
+			<if test="s.orderNum != null">
+                    order_num=#{s.orderNum},
+			</if>
+			<if test="s.paren != null">
+                    paren=#{s.paren},
+			</if>
+			<if test="s.createTime != null">
+                    create_time=#{s.createTime},
+			</if>
+			<if test="s.modifyTime != null">
+                    modify_time=#{s.modifyTime}
+			</if>
+		</set>
+		<where> 
+			<trim prefix="(" suffix=")" suffixOverrides="AND">
+			<if test="w.id != null">
+                    id=#{w.id}
+                   AND 
+ 			</if>
+			<if test="w.menuName != null">
+                    menu_name=#{w.menuName}
+                   AND 
+ 			</if>
+			<if test="w.menuUrl != null">
+                    menu_url=#{w.menuUrl}
+                   AND 
+ 			</if>
+			<if test="w.menuIcon != null">
+                    menu_icon=#{w.menuIcon}
+                   AND 
+ 			</if>
+			<if test="w.isParent != null">
+                    is_parent=#{w.isParent}
+                   AND 
+ 			</if>
+			<if test="w.orderNum != null">
+                    order_num=#{w.orderNum}
+                   AND 
+ 			</if>
+			<if test="w.paren != null">
+                    paren=#{w.paren}
+                   AND 
+ 			</if>
+			<if test="w.createTime != null">
+                    create_time=#{w.createTime}
+                   AND 
+ 			</if>
+			<if test="w.modifyTime != null">
+                    modify_time=#{w.modifyTime}
+ 			</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" >
+		delete from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</delete>
+
+	<select id="count" parameterType="java.util.Map" resultType="int">
+		select count(1) from
+		<include refid="Table_Name" />
+		<where>
+			<include refid="Base_Where" />
+		</where>
+	</select>
+
+	<select id="selectOne"  resultMap="BaseResultMap">
+	  <include refid="Base_Select" />
+	</select>
+
+	<select id="selectList"  resultMap="BaseResultMap">
+	    <include refid="Base_Select" />
+	</select>
+
+     <select id="selectForUpdate" resultMap="BaseResultMap" useCache="false">
+		 <include refid="Base_Select" />
+		for update
+	</select>
+	
+
+</mapper>
